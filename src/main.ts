@@ -8,13 +8,21 @@ async function bootstrap() {
   app.setGlobalPrefix('api/v1');
 
   app.useGlobalPipes(
-  new ValidationPipe({
-    whitelist: true,
-    forbidNonWhitelisted: true,
-    transform: true,
-  }),
-);
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+    }),
+  );
 
-  await app.listen(process.env.PORT ?? 3000);
+  try {
+    await app.listen(process.env.PORT ?? 3000);
+
+    console.log(
+      `🚀 Application is running on: http://localhost:${process.env.PORT ?? 3000}`,
+    );
+  } catch (error) {
+    console.error('❌ Application failed to start:', error);
+  }
 }
 bootstrap();

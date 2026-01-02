@@ -27,7 +27,7 @@ export class TodoService {
   }
 
   findAll() {
-    return this.tasks;
+    return Result.success(this.tasks, "Successfully Fatch All Notes");
   }
 
   findOne(id: number) {
